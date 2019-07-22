@@ -1,0 +1,30 @@
+{
+  "name": "@marvinkome/create-node-app",
+  "version": "1.0.0",
+  "description": "A CLI to bootstrap my node projects",
+  "main": "src/index.js",
+  "bin": {
+    "@marvinkome/create-node-app": "bin/create-node-app",
+    "create-node-app": "bin/create-node-app"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "Marvin Kome",
+  "license": "MIT",
+  "dependencies": {
+    "arg": "^4.1.1",
+    "chalk": "^2.4.2",
+    "edit-json-file": "^1.2.1",
+    "esm": "^3.2.25",
+    "execa": "^2.0.3",
+    "inquirer": "^6.5.0",
+    "json": "^9.0.6",
+    "listr": "^0.14.3",
+    "ncp": "^2.0.0",
+    "pkg-install": "^1.0.0"
+  }
+}
