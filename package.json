@@ -18,6 +18,7 @@
   "dependencies": {
     "arg": "^4.1.1",
     "chalk": "^2.4.2",
+    "commander": "^4.0.0",
     "edit-json-file": "^1.2.1",
     "esm": "^3.2.25",
     "execa": "^2.0.3",

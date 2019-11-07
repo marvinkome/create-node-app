@@ -1,33 +1,29 @@
-import arg from 'arg';
-import inquirer from 'inquirer';
-import { createProject } from './main';
+import program from "commander";
+import init from "./commands/init";
+import packageJson from "../package.json";
 
-function parseArgs() {
-    const args = arg({});
+export async function cli(rawargs) {
+  program.version(packageJson.version);
 
-    return {
-        name: args._[0]
-    }
-}
+  program
+    .command("init <name>")
+    .alias("i")
+    .option("--no-git", "Skip git init")
+    .option("--no-dependencies", "Skip installing dependencies")
+    .option("--use-npm", "Use npm to install packages", false)
+    .description("Create a new node app")
+    .action(init);
 
-async function promptForMissingOptions(options) {
-    const questions = [];
-    if (!options.name) {
-        questions.push({
-            type: 'input',
-            name: 'name',
-            message: 'Please choose the project name'
-        })
-    }
+  // error on unknown commands
+  program.on("command:*", function() {
+    console.error("Invalid command: %s\n", program.args.join(" "));
+    program.outputHelp();
+  });
 
-    const answers = await inquirer.prompt(questions);
-    return {
-        name: options.name || answers.name
-    }
-}
+  program.parse(rawargs);
 
-export async function cli(args) {
-    let options = parseArgs(args);
-    options = await promptForMissingOptions(options);
-    await createProject(options)
+  const NO_COMMAND_SPECIFIED = program.args.length === 0;
+  if (NO_COMMAND_SPECIFIED) {
+    program.outputHelp();
+  }
 }
