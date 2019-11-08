@@ -19,7 +19,7 @@ function generateJWT(user: IUser) {
             id: user._id,
             exp: expirationDate.getTime() / 1000
         },
-        process.env.SECRET_KEY || ''
+        process.env.APP_KEY || ''
     );
 }
 

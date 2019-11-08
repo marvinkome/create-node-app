@@ -52,7 +52,7 @@ export async function getUserFromToken(token: string): Promise<IUser> {
     // decode token
     let payload: any = null;
     try {
-        payload = verify(token, process.env.SECRET_KEY || '');
+        payload = verify(token, process.env.APP_KEY || '');
     } catch (e) {
         throw Error('invalid token');
     }
@@ -78,12 +78,12 @@ export function authenticated(next: (...args: any[]) => any) {
 
 export default {
     required: jwt({
-        secret: process.env.SECRET_KEY || '',
+        secret: process.env.APP_KEY || '',
         userProperty: 'payload',
         getToken: getTokenFromHeaders
     }),
     optional: jwt({
-        secret: process.env.SECRET_KEY || '',
+        secret: process.env.APP_KEY || '',
         userProperty: 'payload',
         getToken: getTokenFromHeaders,
         credentialsRequired: false
