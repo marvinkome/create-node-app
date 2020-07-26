@@ -1,5 +1,5 @@
 {
-    "name": "apollo-node-setup",
+    "name": "create-node-app",
     "version": "1.0.0",
     "main": "index.ts",
     "license": "MIT",
